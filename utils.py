@@ -13,7 +13,7 @@ def processTokenChunks(channelList):
            clearKey = channel['channel_license_url']
         else:
            clearKey = ""
-        kodiPropLicenseUrl = "#KODIPROP:inputstream.adaptive.license_key=" + str(clearKey)
+        kodiPropLicenseUrl = "#KODIPROP:inputstream.adaptive.license_key=" + str(clearKey).replace(" ","").replace("'","\"")
         m3ustr += kodiPropLicenseType + "\n" + kodiPropLicenseUrl + "\n" + "#EXTINF:-1 "
         m3ustr += "tvg-id="+ "\"ts" + channel['channel_id'] + "\" " + "group-title=" + "\"" + channel['channel_genre'] + "\" " + "tvg-logo=\"" + channel['channel_logo'] + "\" ," + channel['channel_name'] + "\n" + channel['channel_url'] + "\n\n"
 
@@ -33,16 +33,6 @@ def saveM3ustringtofile(m3ustr):
     with open("allChannelPlaylist.m3u", "w") as allChannelPlaylistFile:
         allChannelPlaylistFile.write(m3ustr)
 
-
-def getPrintNote():
-    s = " *****************************************************\n" + "Welcome To TataSky Channel Generation Script\n" + \
-        "**********************************************************\n" + \
-        "- Using this script you can generate playable links based on the channels you have subscribed to \n" + \
-        "- You can always read the README.md file if you don't know how to use the generated file \n" + \
-        "- You can login using your password or generate an OTP. You need to enter both the Registered Mobile Number \n" + \
-        "\n Caution: This doesn't promote any kind of hacking or compromising anyone's details"
-
-    return s
 
 
 if __name__ == '__main__':
